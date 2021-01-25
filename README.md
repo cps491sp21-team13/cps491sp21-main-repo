@@ -1,11 +1,6 @@
-# README.md Template
-
 # CPS 491 - Capstone II
 
 Source: <https://bitbucket.org/capstones-cs-udayton/cps491.git>
-
-*NOTE*: _This is just a tentative template for your team to start working on sprint 0. It is a minimum requirement for your project final report and can be updated later.
-Your team can revise/add more sections, however, it is highly recommended to seek approval from the instructor for a pull request._
 
 University of Dayton
 
@@ -19,8 +14,7 @@ Instructor: Dr. Phu Phung
 ## Capstone II Project 
 
 
-# Project Topic/Title
-
+# Compressible Learning Agents for Autonomous Cyber-Physical Systems
 
 # Team members
 
@@ -29,11 +23,12 @@ Instructor: Dr. Phu Phung
 
 # Company Mentor
 
-Matthew Clark, Principal Scientist;
+Matthew Clark, Principal Scientist
 
 Galois
 
 444 E 2nd Street
+
 Dayton, OH 45402
 
 
@@ -68,8 +63,6 @@ List high-level requirements of the project that your team will develop into use
 
 ## Use cases
 
-Draw the overview use case diagram, and define use case description _(Main focus of Sprint 0)_
-
 # System Design
 
 ## Use-Case Realization
@@ -100,7 +93,7 @@ Duration: 20/01/2021-27/01/2021
 
 | Good     |   Could have been better    |  How to improve?  |
 |----------|:---------------------------:|------------------:|
-| learned a lot of preliminary information | documentation of progress | take more notes on what I read about/discover |
+| learned a lot of preliminary information | documentation of progress | take more notes on what I read about/discover  |
 
 # User guide/Demo
 
