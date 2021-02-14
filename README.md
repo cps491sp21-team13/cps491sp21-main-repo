@@ -49,7 +49,7 @@ Project homepage (public): <https://cps491sp21-team13.github.io/>
 
 # Overview
 
-The goal of this project is to determine a method to compress a learning structure, such as a deep neural network or fuzy network, into a minimum network required to satisfy the objective.
+The goal of this project is to determine a method to compress a learning structure, such as a deep neural network or fuzzy network, into a minimum network required to satisfy the objective.
 
 # Project Context and Scope
 
@@ -94,6 +94,39 @@ Duration: 20/01/2021-27/01/2021
 | Good     |   Could have been better    |  How to improve?  |
 |----------|:---------------------------:|------------------:|
 | learned a lot of preliminary information | documentation of progress | take more notes on what I read about/discover  |
+
+### Sprint 1
+
+Duration: 27/01/2021-03/02/2021
+
+#### Completed Tasks:
+
+1. Learned tensor manipulation and learning models in Tensorflow
+2. Experimented with small neural networks in a Jupyter notebook
+
+#### Sprint Retrospection:
+
+| Good     |   Could have been better    |  How to improve?  |
+|----------|:---------------------------:|------------------:|
+| good pace aquiring new knowlege and documenting what I have learned | could have started experimenting with small networks sooner | reach out to ask questions sooner |
+
+### Sprint 2
+
+Duration: 03/02/2021-03/09/2021
+
+#### Completed Tasks:
+
+1. Learned about convolution from Linear Systems.
+2. Detailed a technique for constructing neural networks that approximate arbitrary
+   functions inspired by convolution.
+3. Detailed a technique for approximating arbitrary polynomials with neural networks
+   based on Taylor-series expansion.
+
+#### Sprint Retrospection:
+
+| Good     |   Could have been better    |  How to improve?  |
+|----------|:---------------------------:|------------------:|
+| documentation was thorough and clear | direction of work could have been more focused toward project goal | more formal communication about the precise goal of the project |
 
 # User guide/Demo
 
