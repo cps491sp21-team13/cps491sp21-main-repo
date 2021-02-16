@@ -1,6 +1,6 @@
 # CPS 491 - Capstone II
 
-Source: <https://bitbucket.org/capstones-cs-udayton/cps491.git>
+Source: <https://github.com/cps491sp21-team13/cps491sp21-main-repo.git>
 
 University of Dayton
 
@@ -44,37 +44,29 @@ Project homepage (public): <https://cps491sp21-team13.github.io/>
 
 | Date       |   Version     |  Description |
 |------------|:-------------:|-------------:|
-| DD/MM/YYYY |  0.0          | Init draft   |
+| 16/02/2021 |  0.1          | Details of Taylor and convolutional approximations |
 
 
 # Overview
 
-The goal of this project is to determine a method to compress a learning structure, such as a deep neural network or fuzzy network, into a minimum network required to satisfy the objective.
+The goal of this project is to explore and document the correlation between the configuration of deep neural
+networks and the analytical mathematical functions that they model. A long term goal, possibly not explored
+in this project specifically, is to develop methods for _decomposing_ an arbitrary deep neural network into
+smaller networks with intuitive behavior, and _simplifying_ the network into the minimum network needed to
+model the desired mathematical function.
 
 # Project Context and Scope
 
 This project is a contribution to research into the development of machine learning models that learn intuitively.
 
-# System Analysis
-
 ## High-level Requirements
 
-List high-level requirements of the project that your team will develop into use cases in later steps
-
-## Use cases
-
-# System Design
-
-## Use-Case Realization
-
-## Database 
-
-## User Interface
-
+By the end of the semester, we hope to have reasonably comprehensive documentation of the different ways simple neural networks can approximate simple functions. The process of compiling this documentation should involve careful inspection of trained neural networks guided by mathematics.
 
 # Implementation
 
-## Deployment
+Most work on this project is being done in a Jupyter notebook using markdown for mathematics
+and Tensorflow for implementing neural networks.
 
 # Software Process Management
 
@@ -127,8 +119,6 @@ Duration: 03/02/2021-03/09/2021
 | Good     |   Could have been better    |  How to improve?  |
 |----------|:---------------------------:|------------------:|
 | documentation was thorough and clear | direction of work could have been more focused toward project goal | more formal communication about the precise goal of the project |
-
-# User guide/Demo
 
 # Acknowledgments 
 
