@@ -69,6 +69,34 @@ By the end of the semester, we hope to have reasonably comprehensive documentati
 Most work on this project is being done in a Jupyter notebook using markdown for mathematics
 and Tensorflow for implementing neural networks.
 
+For now, I am focused on fitting functions to pretrained neural networks using SINDy, a regression based technique. Here is a code snippit that illustrates how we can fit discover a function of the form $r\sin(x + \phi) + b$. For more details, see the notebook itself.
+
+    # Construct some sample data
+    f = lambda x: 0.5*tf.sin(x + 0.79) + 0.2
+    xdata = tf.random.uniform([100], minval=0.0, maxval=math.pi * 2.0)
+    ydata = f(xdata) + tf.random.normal([100], stddev=0.05)
+
+    # A function for converting from cartesian to polar coordinates
+    # (x,y) -> (r,theta)
+    def cart2polar(x, y):
+      r = math.sqrt(x**2.0 + y**2.0)
+      theta = math.acos(x/r) if y >= 0.0 else 2*math.pi - math.acos(x/r)
+      return [r,theta]
+    
+    # Fit regression against a basis of functions {sin(x), cos(x)}
+    # to get w0, w1, b
+    X = np.column_stack([tf.sin(xdata), tf.cos(xdata)])
+    reg = sklearn.linear_model.LinearRegression()
+    reg.fit(X, ydata)
+    w0, w1 = reg.coef_
+    b = reg.intercept_
+    
+    # Output model equation in two different forms
+    print(f"Model: {w0:.2f}sin(x) + {w1:.2f}cos(x) + {b:.2f}")
+    r, theta = cart2polar(w0, w1)
+    print(f"Model: {r:.2f}sin(x + {theta:.2f}) + {b:.2f}")
+    print(f"Model R^2 value: {reg.score(X, ydata):.2f}")
+
 # Software Process Management
 
 ## Scrum process
