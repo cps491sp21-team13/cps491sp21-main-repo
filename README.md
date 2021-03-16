@@ -45,6 +45,7 @@ Project homepage (public): <https://cps491sp21-team13.github.io/>
 | Date       |   Version     |  Description |
 |------------|:-------------:|-------------:|
 | 16/02/2021 |  0.1          | Details of Taylor and convolutional approximations |
+| 16/03/2021 |  0.2          | Details data-driven SINDy approach/change-of-basis strategy for building neural networks |
 
 
 # Overview
@@ -104,7 +105,7 @@ Duration: 27/01/2021-03/02/2021
 
 ### Sprint 2
 
-Duration: 03/02/2021-03/09/2021
+Duration: 03/02/2021-09/02/2021
 
 #### Completed Tasks:
 
@@ -119,6 +120,37 @@ Duration: 03/02/2021-03/09/2021
 | Good     |   Could have been better    |  How to improve?  |
 |----------|:---------------------------:|------------------:|
 | documentation was thorough and clear | direction of work could have been more focused toward project goal | more formal communication about the precise goal of the project |
+
+### Sprint 3
+
+Duration: 28/02/2021-09/02/2021
+
+#### Completed Tasks:
+
+1. Explored Taylor series approximations and detailed a method of
+   building a neural network using a Taylor series approximation
+2. Explored Fourier series approximations
+
+#### Sprint Retrospection:
+
+| Good     |   Could have been better    |  How to improve?  |
+|----------|:---------------------------:|------------------:|
+| Documentation was clear | Better communication with company sponsor regarding the direction of the project | smaller, more frequent communication |
+
+### Sprint 4
+
+Duration: 01/03/2021-16/03/2021
+
+#### Completed Tasks:
+
+1. Learned about spline-theory as it relates to deep learning.
+2. Learned about SINDy approach to fitting functions to data.
+
+#### Sprint Retrospection:
+
+| Good     |   Could have been better    |  How to improve?  |
+|----------|:---------------------------:|------------------:|
+| Learning was done quickly and efficiently | Could have implemented ideas more instead of just detailing them in math | organize notebook and code |
 
 # Acknowledgments 
 
