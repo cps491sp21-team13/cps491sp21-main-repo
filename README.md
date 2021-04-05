@@ -46,6 +46,7 @@ Project homepage (public): <https://cps491sp21-team13.github.io/>
 |------------|:-------------:|-------------:|
 | 16/02/2021 |  0.1          | Details of Taylor and convolutional approximations |
 | 16/03/2021 |  0.2          | Details data-driven SINDy approach/change-of-basis strategy for building neural networks |
+| 05/04/2021 | 0.3           | Preliminary results of applying regression-based model fitting to neural networks |
 
 
 # Overview
@@ -179,6 +180,37 @@ Duration: 01/03/2021-16/03/2021
 | Good     |   Could have been better    |  How to improve?  |
 |----------|:---------------------------:|------------------:|
 | Learning was done quickly and efficiently | Could have implemented ideas more instead of just detailing them in math | organize notebook and code |
+
+### Sprint 5
+
+Duration: 16/03/2021-24/03/2021
+
+#### Completed Tasks:
+
+1. Applied SINDy to a network trained on the MNIST dataset.
+2. Built Python infrastructure for manipulating equations and data as required by SINDy.
+3. Compared linear and quadratic models learned from SINDy for classifying the a digit.
+
+#### Sprint Retrospection:
+
+| Good     |   Could have been better    |  How to improve?  |
+|----------|:---------------------------:|------------------:|
+| Very productive in terms of documentation and implementation. Concrete results were found. | NA | Continue with this line of work. |
+
+### Sprint 6
+
+Duration: 24/03/2021-05/04/2021
+
+#### Completed Tasks:
+
+1. Wrote project introduction and motivation.
+2. Literature review on approximation theory of neural networks and model compression.
+
+#### Sprint Retrospection:
+
+| Good     |   Could have been better    |  How to improve?  |
+|----------|:---------------------------:|------------------:|
+| Productivity | NA | Continue literature review |
 
 # Acknowledgments 
 
