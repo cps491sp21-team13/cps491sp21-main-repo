@@ -14,7 +14,7 @@ Instructor: Dr. Phu Phung
 ## Capstone II Project 
 
 
-# Compressible Learning Agents for Autonomous Cyber-Physical Systems
+# Deriving Multi-layer Scaffolding of Compositional Neural Networks from existing, monolithic networks
 
 # Team members
 
@@ -46,7 +46,8 @@ Project homepage (public): <https://cps491sp21-team13.github.io/>
 |------------|:-------------:|-------------:|
 | 16/02/2021 |  0.1          | Details of Taylor and convolutional approximations |
 | 16/03/2021 |  0.2          | Details data-driven SINDy approach/change-of-basis strategy for building neural networks |
-| 05/04/2021 | 0.3           | Preliminary results of applying regression-based model fitting to neural networks |
+| 05/04/2021 |  0.3          | Preliminary results of applying regression-based model fitting to neural networks |
+| 04/05/2021 |  1.0          | Evolutionary algorithm implemented |
 
 
 # Overview
@@ -56,6 +57,8 @@ networks and the analytical mathematical functions that they model. A long term 
 in this project specifically, is to develop methods for _decomposing_ an arbitrary deep neural network into
 smaller networks with intuitive behavior, and _simplifying_ the network into the minimum network needed to
 model the desired mathematical function.
+
+To this end, I have identified a method of reducing a neural network to a smaller mathematical model using regression-strategies. To test the capabilities of this reduction method, I build an evolutionary algorithm that learns a concise polynomial approximation of a neural network trained to classify handwritten digits.
 
 # Project Context and Scope
 
@@ -68,35 +71,64 @@ By the end of the semester, we hope to have reasonably comprehensive documentati
 # Implementation
 
 Most work on this project is being done in a Jupyter notebook using markdown for mathematics
-and Tensorflow for implementing neural networks.
+and Tensorflow for implementing neural networks. However, work migrated to a LaTeX file as the work started to become finalized.
 
-For now, I am focused on fitting functions to pretrained neural networks using SINDy, a regression based technique. Here is a code snippit that illustrates how we can fit discover a function of the form $r\sin(x + \phi) + b$. For more details, see the notebook itself.
+The core of the evolutionary algorithm is given below. The algorithm performs a cycle of mutation and selection on a bank of candidate equations. Individual pixels of the input image are slowly added to the equations over time in order of decreasing variance across the image data set. The equations are mutated according to a metric on terms called VIC (Variance times Inverse Coefficient) in an attempt to speed up the learning process. This algorithm is explained further in the LaTeX document.
 
-    # Construct some sample data
-    f = lambda x: 0.5*tf.sin(x + 0.79) + 0.2
-    xdata = tf.random.uniform([100], minval=0.0, maxval=math.pi * 2.0)
-    ydata = f(xdata) + tf.random.normal([100], stddev=0.05)
-
-    # A function for converting from cartesian to polar coordinates
-    # (x,y) -> (r,theta)
-    def cart2polar(x, y):
-      r = math.sqrt(x**2.0 + y**2.0)
-      theta = math.acos(x/r) if y >= 0.0 else 2*math.pi - math.acos(x/r)
-      return [r,theta]
+    n = 10         # number of equations to work with at once
+    numterms = 10  # number of terms in each equation
     
-    # Fit regression against a basis of functions {sin(x), cos(x)}
-    # to get w0, w1, b
-    X = np.column_stack([tf.sin(xdata), tf.cos(xdata)])
-    reg = sklearn.linear_model.LinearRegression()
-    reg.fit(X, ydata)
-    w0, w1 = reg.coef_
-    b = reg.intercept_
+    x_data, y_data = getDataForDigit(0, model=model)
     
-    # Output model equation in two different forms
-    print(f"Model: {w0:.2f}sin(x) + {w1:.2f}cos(x) + {b:.2f}")
-    r, theta = cart2polar(w0, w1)
-    print(f"Model: {r:.2f}sin(x + {theta:.2f}) + {b:.2f}")
-    print(f"Model R^2 value: {reg.score(X, ydata):.2f}")
+    # Gather pixels with a variance above the threshold 0.1
+    sigterms = Equation()
+    for i, singlepixeldata in enumerate(x_data.T):
+      sigterms._terms.append(Term("x_{%d}" % i, singlepixeldata, 1))
+    sigterms.elimByVarThreshold(0.1)
+    sigterms.sortByVariance()
+    
+    # Build initial linear equations from highest-varying pixels
+    eqs = []
+    for i in range(n):
+      neweq = Equation(sigterms._terms[:numterms])
+      neweq.fitTerms(y_data)
+      eqs.append(neweq)
+    
+    # Evolutionary learning loop
+    lintermix = numterms    # next linear term to add
+    iterations = 0          # number of iterations
+    while lintermix < len(sigterms._terms):
+      iterations += 1
+    
+      # Mutation: Add the next highest-varying linear term
+      for eq in eqs:
+        eq._terms.append(sigterms._terms[lintermix])
+        eq.fitTerms(y_data)
+        eq.pruneByCoef(numterms)
+        eq.fitTerms(y_data)
+      lintermix += 1
+    
+      # Mutation: Recombination of a single low-VIC term
+      for eq in tuple(eqs):
+        neweq = eq.mutate()
+        neweq.fitTerms(y_data)
+        neweq.pruneByCoef(numterms)
+        neweq.fitTerms(y_data)
+        eqs.append(neweq)
+    
+      # Selection: remove equations with low R^2 value
+      eqs.sort(key=Equation.getR2, reverse=True)
+      eqs = eqs[0:n]
+    
+      # Evaluation & Display
+      averageR2 = sum(map(Equation.getR2, eqs)) / len(eqs)
+      if iterations % 10 == 0 or iterations < 10:
+        print("Iterations: {}, R^2: {}".format(iterations, averageR2))
+    
+    print("----- Final equation -------")
+    eqs.sort(key=Equation.getR2, reverse=True)
+    eqs[0].display()
+    print("R^2:", eqs[0].getR2())
 
 # Software Process Management
 
@@ -211,6 +243,36 @@ Duration: 24/03/2021-05/04/2021
 | Good     |   Could have been better    |  How to improve?  |
 |----------|:---------------------------:|------------------:|
 | Productivity | NA | Continue literature review |
+
+### Sprint 7
+
+Duration: 05/04/2021-19/04/2021
+
+#### Completed Tasks:
+
+1. Built evolutionary equation-learning algorithm and tested it on an MNIST network
+2. Documented observasions about the evolutionary algorithm and one of the equations it learned.
+
+#### Sprint Retrospection:
+
+| Good     |   Could have been better    |  How to improve?  |
+|----------|:---------------------------:|------------------:|
+| Lots of practical code written | Documentation, notebook is a little messy | spend more time tidying notebook |
+
+### Sprint 8
+
+Duration: 19/04/2021-04/05/2021
+
+#### Completed Tasks:
+
+1. Ran experiments testing viability of the VIC metric and high-variance term adding.
+2. More documentation and writing.
+
+#### Sprint Retrospection:
+
+| Good     |   Could have been better    |  How to improve?  |
+|----------|:---------------------------:|------------------:|
+| Experiments | Writing is slow | figure out how to write more efficiently |
 
 # Acknowledgments 
 
